@@ -7,6 +7,7 @@ class Game:
     def __init__(self, _screen: pygame.Surface, _v: int, _fps: int, _eggs_speed: int, _clock: pygame.time.Clock, _width: int,
                  _height: int):
         pygame.display.set_caption('Game')
+
         self.size = self.width, self.height = _width, _height
         self.screen = _screen
         self.running = True
@@ -57,14 +58,33 @@ class Game:
                         print(egg.side, wolf.position)
                         self.counter_of_not_caught_eggs += 1
                         if self.counter_of_not_caught_eggs == 3:
-                            """
-                            ЗДЕСЬ ВЫХОД СДЕЛАЙ ТИПО ПОДСЧЕТ КОЛИЧЕСТВА ОЧКОВ, ОЧКИ РАСЧИТЫВАЙ ПО ФОРМУЛЕ eggs_counter - 3
-                            """
-                            pygame.quit()
-
+                            self.running = False
             self.screen = wolf.get_now_position(self.screen)
             self.clock.tick(self.fps)
             pygame.display.flip()
+        self.game_over()
+
+    def game_over(self):
+        self.screen.fill((255, 255, 255))
+        stopped = True
+        while stopped:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+        self.draw_text('Игра окончена!', 80, self.height / 2, self.width / 2.4)
+        self.draw_text(f"Ваш результат: {self.eggs_counter - 3}", 60, self.height / 2, self.width / 2)
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_RETURN]:
+            game.run()
+        elif keys[pygame.K_BACKSPACE]:
+            pygame.quit()
+
+    def draw_text(self, text, size, x, y):
+        font = pygame.font.Font("./data/Dited.otf", size)
+        text_surface = font.render(text, True, (0, 0, 0))
+        text_rect = text_surface.get_rect()
+        text_rect.center = (x, y)
+        self.screen.blit(text_surface, text_rect)
 
 
 if __name__ == '__main__':
