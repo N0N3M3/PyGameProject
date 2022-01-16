@@ -79,6 +79,6 @@ class MainMenu(Menu):
                 screen = pygame.display.set_mode(size)
                 game = Game(screen, v, fps, eggs_speed, clock, width, height)
                 game.run()
-                pygame.quit()
+                #pygame.quit()
 
 

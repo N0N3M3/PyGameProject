@@ -1,7 +1,7 @@
 from menu import *
 
 
-class Window():
+class Window:
     def __init__(self):
         pygame.init()
         self.running, self.playing = True, False
@@ -19,7 +19,7 @@ class Window():
             if self.START_KEY:
                 self.playing = False
             self.display.fill(self.BLACK)
-            self.draw_text('Cпасибо за игру!', 20, self.DISPLAY_W / 2, self.DISPLAY_H / 2)
+            self.draw_text('Спасибо за игру!', 20, self.DISPLAY_W / 2, self.DISPLAY_H / 2)
             self.window.blit(self.display, (0, 0))
             pygame.display.update()
             self.reset_keys()
@@ -43,7 +43,7 @@ class Window():
         self.UP_KEY, self.DOWN_KEY, self.START_KEY, self.BACK_KEY = False, False, False, False
 
     def draw_text(self, text, size, x, y):
-        font = pygame.font.Font("./data/Dited.otf", size)
+        font = pygame.font.Font("data/Dited.otf", size)
         text_surface = font.render(text, True, (0, 0, 0))
         text_rect = text_surface.get_rect()
         text_rect.center = (x, y)
