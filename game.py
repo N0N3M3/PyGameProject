@@ -7,7 +7,6 @@ class Game:
     def __init__(self, _screen: pygame.Surface, _v: int, _fps: int, _eggs_speed: int, _clock: pygame.time.Clock,
                  _width: int, _height: int):
         pygame.display.set_caption('Game')
-
         self.size = self.width, self.height = _width, _height
         self.screen = _screen
         self.running = True
@@ -30,6 +29,7 @@ class Game:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
+                    quit()
                 elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_LEFT:
                         self.screen = wolf.set_position(4, self.screen)
@@ -62,15 +62,10 @@ class Game:
             self.screen = wolf.get_now_position(self.screen)
             self.clock.tick(self.fps)
             pygame.display.flip()
-        self.game_over()
+        return self.game_over()
 
     def game_over(self):
         self.screen.fill((255, 255, 255))
-        # stopped = True
-        # while stopped:
-        #     for event in pygame.event.get():
-        #         if event.type == pygame.QUIT:
-        #             pygame.quit()
         self.draw_text('Игра окончена!', 80, self.height / 2, self.width / 2.4)
         self.draw_text(f"Ваш результат: {self.eggs_counter - 3}", 60, self.height / 2, self.width / 2)
         keys = pygame.key.get_pressed()
@@ -78,6 +73,7 @@ class Game:
             game.run()
         elif keys[pygame.K_BACKSPACE]:
             pygame.quit()
+            quit()
 
     def draw_text(self, text, size, x, y):
         font = pygame.font.Font("data/Dited.otf", size)

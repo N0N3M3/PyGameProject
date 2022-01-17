@@ -11,6 +11,7 @@ class Window:
         self.window = pygame.display.set_mode((self.DISPLAY_W, self.DISPLAY_H))
         self.BLACK, self.WHITE = (0, 0, 0), (255, 255, 255)
         self.main_menu = MainMenu(self)
+        self.helping = HelpMenu(self)
         self.curr_menu = self.main_menu
 
     def game_loop(self):
