@@ -69,25 +69,7 @@ class Game:
             self.screen = wolf.get_now_position(self.screen)
             self.clock.tick(self.fps)
             pygame.display.flip()
-        return self.game_over()
-
-    def game_over(self):
-        self.screen.fill((255, 255, 255))
-        self.draw_text('Игра окончена!', 80, self.height / 2, self.width / 2.4)
-        self.draw_text(f"Ваш результат: {self.eggs_counter - 3}", 60, self.height / 2, self.width / 2)
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_RETURN]:
-            game.run()
-        elif keys[pygame.K_BACKSPACE]:
-            pygame.quit()
-            quit()
-
-    def draw_text(self, text, size, x, y):
-        font = pygame.font.Font("data/Dited.otf", size)
-        text_surface = font.render(text, True, (0, 0, 0))
-        text_rect = text_surface.get_rect()
-        text_rect.center = (x, y)
-        self.screen.blit(text_surface, text_rect)
+        return self.eggs_counter
 
 
 if __name__ == '__main__':
