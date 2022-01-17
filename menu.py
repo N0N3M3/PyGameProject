@@ -94,10 +94,10 @@ class StartGame:
         text_rect.center = (x, y)
         self.screen.blit(text_surface, text_rect)
 
-    def game_over(self):
+    def game_over(self, eggs_counter):
         self.screen.fill((255, 255, 255))
         self.draw_text('Игра окончена!', 80, self.height / 2, self.width / 2.4)
-        self.draw_text(f"Ваш результат: {self.game.eggs_counter - 3}", 60, self.height / 2, self.width / 2)
+        self.draw_text(f"Ваш результат: {eggs_counter - 3}", 60, self.height / 2, self.width / 2)
         keys = pygame.key.get_pressed()
         if keys[pygame.K_RETURN]:
             game = Game(self.screen, self.v, self.fps, self.eggs_speed, self.clock, 
