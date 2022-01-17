@@ -1,3 +1,4 @@
+from utils import load_image
 import pygame
 import random
 
@@ -9,10 +10,12 @@ class Egg:
         self.height_screen = height_screen
         self.speed = speed
         self.fps = fps
+        self.egg_image = load_image('../data/egg.png', colorkey=-1)
         self.egg_size = 20
         self.side = random.randint(1, 4)
         self.coords = None
-        self.delta_y = self.speed // self.fps - 1
+        self.degree = 0
+        self.delta_y = self.speed // self.fps - 0.7
         self._construct_egg()
 
     def _construct_egg(self):
@@ -29,10 +32,12 @@ class Egg:
         pygame.draw.circle(self.screen, pygame.Color(0, 0, 0), coords, self.egg_size)
 
     def move(self, screen: pygame.Surface):
+        egg_image = pygame.transform.rotate(self.egg_image, self.degree)
+        self.degree = (self.degree + 10) % 360
         delta_x = self.speed // self.fps
         delta_x = delta_x if self.side == 1 or self.side == 4 else -delta_x
         self.coords = (self.coords[0] + delta_x, self.coords[1] + self.delta_y)
-        pygame.draw.circle(screen, pygame.Color(0, 0, 0), self.coords, self.egg_size)
+        screen.blit(egg_image, self.coords)
         return screen
 
     def check_position(self):
