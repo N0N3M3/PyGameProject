@@ -28,7 +28,7 @@ class Game:
         self.screen.blit(self.background, (0, 0))
         self.screen.blit(self.grass, (0, self.height - 20))
 
-        wolf = Wolf(self.screen, self.width, self.height, 580, 550)
+        wolf = Wolf(self.screen, self.width, self.height, 480, 750)
         eggs_pool = [Egg(self.screen, self.width, self.height, self.v, self.fps)]
         while self.running:
             for event in pygame.event.get():
