@@ -12,6 +12,8 @@ class Window:
         self.BLACK, self.WHITE = (0, 0, 0), (255, 255, 255)
         self.main_menu = MainMenu(self)
         self.helping = HelpMenu(self)
+        self.game_over = GameOver(self)
+        self.difficulty = Difficulty(self)
         self.curr_menu = self.main_menu
 
     def game_loop(self):
