@@ -1,6 +1,7 @@
 import pygame
 from classes.wolf import Wolf
 from classes.egg import Egg
+from utils import load_image
 
 
 class Game:
@@ -12,6 +13,8 @@ class Game:
         self.running = True
         self.v = _v  # пикселей в секунду
         self.fps = _fps
+        self.grass = pygame.transform.scale(load_image('../data/grass.png', colorkey=-1), (self.width, 20))
+        self.background = pygame.transform.scale(load_image('../data/scene.png', colorkey=-1), (self.width, self.height))
         self.eggs_speed = _eggs_speed
         self.counter_of_not_caught_eggs = 0
         self.time_delta_limit = 500
@@ -22,8 +25,10 @@ class Game:
 
     def run(self):
         self.screen.fill((255, 255, 255))
+        self.screen.blit(self.background, (0, 0))
+        self.screen.blit(self.grass, (0, self.height - 20))
 
-        wolf = Wolf(self.screen, self.width, self.height, 320)
+        wolf = Wolf(self.screen, self.width, self.height, 580, 550)
         eggs_pool = [Egg(self.screen, self.width, self.height, self.v, self.fps)]
         while self.running:
             for event in pygame.event.get():
@@ -48,8 +53,10 @@ class Game:
                             pygame.time.set_timer(self.EGGS_CREATE_EVENT, 0)
                             pygame.time.set_timer(self.EGGS_CREATE_EVENT, self.eggs_speed)
                             print(self.eggs_speed)
-
             self.screen.fill((255, 255, 255))
+            self.screen.blit(self.background, (0, 0))
+            self.screen.blit(self.grass, (0, self.height - 20))
+
             for egg in eggs_pool:
                 self.screen = egg.move(self.screen)
                 if not egg.check_position():
