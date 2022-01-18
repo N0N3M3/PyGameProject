@@ -1,4 +1,4 @@
-from menu1 import Window
+from window import Window
 
 g = Window()
 

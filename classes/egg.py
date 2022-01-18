@@ -46,6 +46,6 @@ class Egg:
         :return: bool значение
         """
         if self.side == 1 or self.side == 4:
-            return self.coords[0] < self.width_screen // 3 and self.coords[1] < self.height_screen - self.egg_size
+            return self.coords[0] < self.width_screen // 3 - 60 and self.coords[1] < self.height_screen - self.egg_size
         else:
-            return self.coords[0] > self.width_screen // 3 * 2 and self.coords[1] < self.height_screen - self.egg_size
+            return self.coords[0] > self.width_screen // 3 * 2 + 60 and self.coords[1] < self.height_screen - self.egg_size
