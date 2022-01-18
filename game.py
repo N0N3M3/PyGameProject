@@ -14,7 +14,8 @@ class Game:
         self.v = _v  # пикселей в секунду
         self.fps = _fps
         self.grass = pygame.transform.scale(load_image('../data/grass.png', colorkey=-1), (self.width, 20))
-        self.background = pygame.transform.scale(load_image('../data/scene.png', colorkey=-1), (self.width, self.height))
+        self.background = pygame.transform.scale(load_image('../data/scene.png', colorkey=-1),
+                                                 (self.width, self.height))
         self.eggs_speed = _eggs_speed
         self.counter_of_not_caught_eggs = 0
         self.time_delta_limit = 500

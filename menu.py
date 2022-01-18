@@ -132,25 +132,29 @@ class Difficulty(Menu):
                 eggs_speed = 3000
                 game = Game(screen, v, fps, eggs_speed,
                             clock, width, height)
+                game.run()
                 k = game.run()
-                GameOver(self).display_menu(k)
-                self.game.curr_menu = self.game.game_over()
+                f = open('./data/data.txt', 'w')
+                f.write(str(k + 1))
+                self.game.curr_menu = self.game.game_over
             elif self.state == 'Нормально':
                 eggs_speed = 2100
                 game = Game(screen, v, fps, eggs_speed,
                             clock, width, height)
                 game.run()
                 k = game.run()
-                GameOver(self).display_menu(k)
-                self.game.curr_menu = self.game.game_over()
+                f = open('./data/data.txt', 'w')
+                f.write(str(k + 1))
+                self.game.curr_menu = self.game.game_over
             elif self.state == "Сложно":
                 eggs_speed = 1500
                 game = Game(screen, v, fps, eggs_speed,
                             clock, width, height)
                 game.run()
                 k = game.run()
-                GameOver(self).display_menu(k)
-                self.game.curr_menu = self.game.game_over()
+                f = open('./data/data.txt', 'w')
+                f.write(str(k))
+                self.game.curr_menu = self.game.game_over
             self.run_display = False
 
 
@@ -158,8 +162,11 @@ class GameOver(Menu):
     def __init__(self, game):
         Menu.__init__(self, game)
 
-    def display_menu(self, eggs_counter):
+    def display_menu(self):
         self.run_display = True
+        f = open('./data/data.txt', 'r+')
+        eggs_counter = f.readline()
+        f.close()
         while self.run_display:
             self.game.check_events()
             if self.game.START_KEY or self.game.BACK_KEY:
@@ -167,7 +174,7 @@ class GameOver(Menu):
                 self.run_display = False
             self.game.display.fill(self.game.WHITE)
             self.game.draw_text('Вы проиграли!', 80, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2.4)
-            self.game.draw_text(f'Ваш результат: {eggs_counter}',
+            self.game.draw_text(f'Ваш результат: {int(eggs_counter) - 3}',
                                 60, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 1.9)
             self.blit_screen()
 
@@ -186,7 +193,7 @@ class HelpMenu(Menu):
             self.game.display.fill(self.game.WHITE)
             self.game.draw_text('Помощь!', 80, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2.4)
             self.game.draw_text('При помощи стрелочек управляй волком,', 60, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2)
-            self.game.draw_text('чтобы словить как можно больше яиц.', 60, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 1.8)
-            self.game.draw_text('Чтобы вернуться обратно нажми bakspace.', 60, self.game.DISPLAY_W / 2,
+            self.game.draw_text('чтобы поймать как можно больше яиц.', 60, self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 1.8)
+            self.game.draw_text('Чтобы вернуться обратно нажми backspace.', 60, self.game.DISPLAY_W / 2,
                                 self.game.DISPLAY_H / 1.4)
             self.blit_screen()
