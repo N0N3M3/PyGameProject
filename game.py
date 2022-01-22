@@ -5,8 +5,10 @@ from utils import load_image
 
 
 class Game:
+    """Данный класс описывает логику игры"""
     def __init__(self, _screen: pygame.Surface, _v: int, _fps: int, _eggs_speed: int, _clock: pygame.time.Clock,
                  _width: int, _height: int):
+        """Инициализация и/или подготовка текущего окна к игре"""
         pygame.display.set_caption('Game')
         self.size = self.width, self.height = _width, _height
         self.screen = _screen
@@ -25,6 +27,7 @@ class Game:
         self.eggs_counter = 0
 
     def run(self):
+        """Основной запуск игры"""
         self.screen.fill((255, 255, 255))
         self.screen.blit(self.background, (0, 0))
         self.screen.blit(self.grass, (0, self.height - 20))
@@ -73,7 +76,7 @@ class Game:
         return self.eggs_counter
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # тесты конкретно класса Game
     pygame.init()
     size = width, height = 1400, 900
     v = 250

@@ -4,7 +4,19 @@ import random
 
 
 class Egg:
+    """
+    Данный класс описывает логику движения яиц в игре
+    """
+
     def __init__(self, screen: pygame.Surface, width_screen, height_screen, speed: int, fps: int):
+        """
+        Инициализирующий метод, принимающий в себя основные параметры
+        :param screen: объект холста, на котором сконструировать начальное положение яйца
+        :param width_screen: ширина холста
+        :param height_screen: высота холста
+        :param speed: интервал вызова собственного события игры "появление яйца", в мс
+        :param fps: ФПС
+        """
         self.screen = screen
         self.width_screen = width_screen
         self.height_screen = height_screen
@@ -19,6 +31,11 @@ class Egg:
         self._construct_egg()
 
     def _construct_egg(self):
+        """
+        Protected метод класса, защищенный, чтобы применять только внутри класса, описывает
+        начальное положение яйца
+        :return:
+        """
         if self.side == 1:
             coords = (0 + self.egg_size, int(self.height_screen * .18))
         elif self.side == 2:
@@ -29,9 +46,12 @@ class Egg:
             coords = (0 + self.egg_size, int(self.height_screen * .45))
         self.coords = coords
 
-        pygame.draw.circle(self.screen, pygame.Color(0, 0, 0), coords, self.egg_size)
-
     def move(self, screen: pygame.Surface):
+        """
+        Отвечает за перемещение яйца на холсте
+        :param screen: холст
+        :return:
+        """
         egg_image = pygame.transform.rotate(self.egg_image, self.degree)
         self.degree = (self.degree + 10) % 360
         delta_x = self.speed // self.fps
@@ -48,4 +68,5 @@ class Egg:
         if self.side == 1 or self.side == 4:
             return self.coords[0] < self.width_screen // 3 - 60 and self.coords[1] < self.height_screen - self.egg_size
         else:
-            return self.coords[0] > self.width_screen // 3 * 2 + 60 and self.coords[1] < self.height_screen - self.egg_size
+            return self.coords[0] > self.width_screen // 3 * 2 + 60 and self.coords[
+                1] < self.height_screen - self.egg_size

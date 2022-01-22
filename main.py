@@ -1,7 +1,7 @@
 from window import Window
 
-g = Window()
+window_object = Window()
 
-while g.running:
-    g.curr_menu.display_menu()
-    g.game_loop()
+while window_object.running:
+    window_object.curr_menu.display_menu()
+    window_object.game_loop()
