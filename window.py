@@ -28,7 +28,7 @@ class Window:
             self.reset_keys()
 
     def check_events(self):
-        """Проверяет нажатия/закрытие окон"""
+        """Проверяет  нажатия/закрытие окон"""
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 f = open('./data/data.txt', 'w')

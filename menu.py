@@ -23,7 +23,7 @@ class Menu:
 
 
 class MainMenu(Menu):
-    """Класс главного окна (открывается в самом начале)"""
+    """Класс главного окна  (открывается в самом начале)"""
     def __init__(self, game):
         Menu.__init__(self, game)
         self.start_x, self.start_y = self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 1.7
