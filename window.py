@@ -28,6 +28,8 @@ class Window:  # Класс инициализации окон
     def check_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                f = open('./data/data.txt', 'w')
+                f.write('0')
                 self.running, self.playing = False, False
                 self.curr_menu.run_display = False
             if event.type == pygame.KEYDOWN:

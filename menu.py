@@ -60,7 +60,7 @@ class MainMenu(Menu):  # Класс главного окна (открывае�
                 self.cursor_rect.midtop = (self.start_x - self.offset, self.start_y + self.offset2)
                 self.state = "Начало"
 
-    def check_input(self, game=None):
+    def check_input(self):
         self.move_cursor()
         if self.game.START_KEY:
             if self.state == "Помощь":
