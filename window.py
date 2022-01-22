@@ -1,7 +1,7 @@
 from menu import *
 
 
-class Window:
+class Window:  # Класс инициализации окон
     def __init__(self):
         pygame.init()
         self.running, self.playing = True, False
@@ -22,8 +22,6 @@ class Window:
             if self.START_KEY:
                 self.playing = False
             self.display.fill(self.BLACK)
-            self.draw_text('Спасибо за игру!', 20, self.DISPLAY_W / 2, self.DISPLAY_H / 2)
-            self.window.blit(self.display, (0, 0))
             pygame.display.update()
             self.reset_keys()
 
