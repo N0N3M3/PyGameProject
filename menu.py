@@ -2,7 +2,8 @@ from game import Game
 import pygame
 
 
-class Menu:  # Основной класс меню
+class Menu:
+    """Основной класс меню"""
     def __init__(self, game):
         self.game = game
         self.mid_w = self.game.DISPLAY_W / 2
@@ -21,7 +22,8 @@ class Menu:  # Основной класс меню
         self.game.reset_keys()
 
 
-class MainMenu(Menu):  # Класс главного окна (открывается в самом начале)
+class MainMenu(Menu):
+    """Класс главного окна (открывается в самом начале)"""
     def __init__(self, game):
         Menu.__init__(self, game)
         self.start_x, self.start_y = self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 1.7
@@ -70,7 +72,8 @@ class MainMenu(Menu):  # Класс главного окна (открывае�
             self.run_display = False
 
 
-class Difficulty(Menu):  # Класс выбора сложности
+class Difficulty(Menu):
+    """Класс выбора сложности"""
     def __init__(self, game):
         Menu.__init__(self, game)
         self.easy_x, self.easy_y = self.game.DISPLAY_W / 2, self.game.DISPLAY_H / 2.4
@@ -159,7 +162,8 @@ class Difficulty(Menu):  # Класс выбора сложности
             self.run_display = False
 
 
-class GameOver(Menu):  # Класс окончания игры
+class GameOver(Menu):
+    """Класс окончания игры"""
     def __init__(self, game):
         Menu.__init__(self, game)
 
@@ -180,7 +184,8 @@ class GameOver(Menu):  # Класс окончания игры
             self.blit_screen()
 
 
-class HelpMenu(Menu):  # Класс меню помощи
+class HelpMenu(Menu):
+    """Класс помощи"""
     def __init__(self, game):
         Menu.__init__(self, game)
 
